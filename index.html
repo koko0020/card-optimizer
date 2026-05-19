@@ -326,9 +326,9 @@
               <tr>
                 <th>月</th>
                 <th>MileagePlus<br>セゾン+マイルアップ<br><small>引落月で入力<br>3月〜翌2月集計</small></th>
+                <th>三井住友<br>ゴールドNL<br><small>利用月で入力<br>6月〜翌5月集計</small></th>
                 <th>エポス<br>ゴールド<br><small>引落月で入力<br>6月〜翌5月集計</small></th>
                 <th>マルエツ<br>カード</th>
-                <th>三井住友<br>ゴールドNL<br><small>6月〜翌5月集計</small></th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -396,7 +396,10 @@
             <input type="number" id="smbcBase" value="0.5" step="0.1"/>
             <label>年間ボーナス条件（円）</label>
             <input type="number" id="smbcTarget" value="1000000" step="10000"/>
-            <div class="tiny">集計期間：6/1〜翌5/31利用分</div>
+            <div class="tiny">集計期間：6/1〜翌5/31の利用分。請求月ではなく利用月で入力</div>
+            <label>年間ボーナスpt</label>
+            <input type="number" id="smbcBonus" value="10000" step="1000"/>
+          </div>
           <div class="setting-box">
             <h3>エポスゴールド</h3>
             <label>通常還元率（%）</label>
@@ -404,6 +407,9 @@
             <label>年間ボーナス条件（円）</label>
             <input type="number" id="eposTarget" value="1000000" step="10000"/>
             <div class="tiny">集計期間：6月〜翌5月の引き落とし分</div>
+            <label>年間ボーナスpt</label>
+            <input type="number" id="eposBonus" value="10000" step="1000"/>
+          </div>
           <div class="setting-box">
             <h3>マルエツカード</h3>
             <label>通常還元率（%）</label>
@@ -626,7 +632,7 @@ function renderSummaries(){
        <span class="tag">実質 ${yen(c.mpYen)} 相当</span>
        ${mpOver>0?`<span class="tag warn">上限超過 ${yen(mpOver)}</span>`:`<span class="tag">1.5%枠 残り ${yen(Math.max(0,s.mpCapYen-c.mpPeriodSpend))}</span>`}
        <span class="tag warn">対象: 3月〜翌2月引落分</span>`,
-      `3月〜翌2月の引き落とし分で集計`
+      `3月〜翌2月の引き落とし分で集計。MileagePlus列は引き落とし月で入力`
     ),
     cardSummaryHtml(
       "三井住友カード ゴールドNL",
@@ -635,8 +641,8 @@ function renderSummaries(){
       `<span class="tag ${c.smbcPeriodSpend>=s.smbcTarget?'good':'warn'}">${c.smbcPeriodSpend>=s.smbcTarget?'ボーナス達成':'残り '+yen(Math.max(0,s.smbcTarget-c.smbcPeriodSpend))}</span>
        <span class="tag">${num(Math.round(c.smbcTotalPt))}pt見込み</span>
        <span class="tag">実質 ${pct(c.smbcPeriodSpend? (c.smbcTotalPt/c.smbcPeriodSpend*100):0)}</span>
-       <span class="tag warn">対象: 6月〜翌5月入力分</span>`,
-      `6/1〜翌5/31利用分を想定。月単位入力のため、6月〜翌5月分で近似集計`
+       <span class="tag warn">対象: 6月〜翌5月利用分</span>`,
+      `6/1〜翌5/31の利用分を想定。三井住友列は請求月ではなく利用月で入力`
     ),
     cardSummaryHtml(
       "エポスゴールド",
