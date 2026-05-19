@@ -285,7 +285,7 @@
   <header>
     <h1>クレカ配分オプティマイザー</h1>
     <p class="lead">
-      毎月の請求額を入れるだけで、MileagePlusの年間300万円枠（4月〜翌3月の引き落とし分）、エポスの100万円ボーナス、三井住友ゴールドNLの100万円ボーナス（6/1〜翌5/31利用分）、マルエツ特典をまとめて管理します。
+      毎月の請求額を入れるだけで、MileagePlusの年間300万円枠（3月〜翌2月の引き落とし分）、エポスの100万円ボーナス、三井住友ゴールドNLの100万円ボーナス（6/1〜翌5/31利用分）、マルエツ特典をまとめて管理します。
       データはこの端末のブラウザ内だけに保存されます。
     </p>
   </header>
@@ -303,7 +303,7 @@
           <div class="kpi">
             <div class="label">MileagePlus見込み</div>
             <div class="value" id="kpiMiles">0 mi</div>
-            <div class="sub" id="kpiMilesYen">4月〜翌3月引落分ベース</div>
+            <div class="sub" id="kpiMilesYen">3月〜翌2月引落分ベース</div>
           </div>
           <div class="kpi">
             <div class="label">100万円ボーナス到達数</div>
@@ -325,7 +325,7 @@
             <thead>
               <tr>
                 <th>月</th>
-                <th>MileagePlus<br>セゾン+マイルアップ<br><small>4月〜翌3月集計</small></th>
+                <th>MileagePlus<br>セゾン+マイルアップ<br><small>引落月で入力<br>3月〜翌2月集計</small></th>
                 <th>エポス<br>ゴールド<br><small>引落月で入力<br>6月〜翌5月集計</small></th>
                 <th>マルエツ<br>カード</th>
                 <th>三井住友<br>ゴールドNL<br><small>6月〜翌5月集計</small></th>
@@ -343,7 +343,7 @@
         </div>
         <input type="file" id="fileInput" accept="application/json" style="display:none"/>
         <p class="note">
-          ※ カード会社の実際の集計期間・対象外利用はズレることがあります。MileagePlusは「4月〜翌3月の引き落とし分」を対象期間として扱います。三井住友ゴールドNLは「6月1日〜翌5月31日利用分」を想定し、6月〜翌5月の入力分で集計します。
+          ※ カード会社の実際の集計期間・対象外利用はズレることがあります。MileagePlusは「3月〜翌2月の引き落とし分」を対象期間として扱います。三井住友ゴールドNLは「6月1日〜翌5月31日利用分」を想定し、6月〜翌5月の入力分で集計します。
         </p>
       </div>
 
@@ -391,15 +391,19 @@
             <input type="number" id="mpCapYen" value="3000000" step="10000"/>
           </div>
           <div class="setting-box">
+            <h3>三井住友ゴールドNL</h3>
+            <label>通常還元率（%）</label>
+            <input type="number" id="smbcBase" value="0.5" step="0.1"/>
+            <label>年間ボーナス条件（円）</label>
+            <input type="number" id="smbcTarget" value="1000000" step="10000"/>
+            <div class="tiny">集計期間：6/1〜翌5/31利用分</div>
+          <div class="setting-box">
             <h3>エポスゴールド</h3>
             <label>通常還元率（%）</label>
             <input type="number" id="eposBase" value="0.5" step="0.1"/>
             <label>年間ボーナス条件（円）</label>
             <input type="number" id="eposTarget" value="1000000" step="10000"/>
             <div class="tiny">集計期間：6月〜翌5月の引き落とし分</div>
-            <label>年間ボーナスpt</label>
-            <input type="number" id="eposBonus" value="10000" step="1000"/>
-          </div>
           <div class="setting-box">
             <h3>マルエツカード</h3>
             <label>通常還元率（%）</label>
@@ -408,16 +412,6 @@
             <input type="number" id="maruetsuSunday" value="5" step="0.1"/>
             <label>1日・第3金曜（%相当）</label>
             <input type="number" id="maruetsuFiveX" value="2.5" step="0.1"/>
-          </div>
-          <div class="setting-box">
-            <h3>三井住友ゴールドNL</h3>
-            <label>通常還元率（%）</label>
-            <input type="number" id="smbcBase" value="0.5" step="0.1"/>
-            <label>年間ボーナス条件（円）</label>
-            <input type="number" id="smbcTarget" value="1000000" step="10000"/>
-            <div class="tiny">集計期間：6/1〜翌5/31利用分</div>
-            <label>年間ボーナスpt</label>
-            <input type="number" id="smbcBonus" value="10000" step="1000"/>
           </div>
         </div>
         <div class="buttons">
@@ -429,7 +423,7 @@
       <div class="card span-12">
         <h2>ルールメモ</h2>
         <p class="foot">
-          MileagePlusセゾン＋マイルアップは、1,000円あたり15マイルとして計算。年間45,000マイル枠＝年間300万円利用までを上限として扱います。集計期間は4月〜翌3月の引き落とし分として管理します。
+          MileagePlusセゾン＋マイルアップは、1,000円あたり15マイルとして計算。年間45,000マイル枠＝年間300万円利用までを上限として扱います。集計期間は3月〜翌2月の引き落とし分として管理します。
           エポスゴールドは年間100万円利用で10,000ポイントのボーナスを狙う前提です。三井住友カード ゴールドNLは6月1日〜翌5月31日利用分で年間100万円、10,000ポイントのボーナスを狙う前提です。
           マルエツカードは日曜5%オフ、毎月1日・第3金曜は200円ごとに5WAON POINT＝2.5%相当として扱います。
         </p>
@@ -442,9 +436,9 @@ const STORAGE_KEY = "card_optimizer_v1";
 
 const cards = [
   {id:"mp", name:"MileagePlusセゾン+マイルアップ"},
+  {id:"smbc", name:"三井住友ゴールドNL"},
   {id:"epos", name:"エポスゴールド"},
   {id:"maruetsu", name:"マルエツカード"},
-  {id:"smbc", name:"三井住友ゴールドNL"},
 ];
 
 const months = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
@@ -537,11 +531,11 @@ function totals(){
   return t;
 }
 
-// MileagePlusの年間枠は「4月〜翌3月の引き落とし分」。
+// MileagePlusの年間枠は「3月〜翌2月の引き落とし分」。
 // セゾンは引落月ベースなので、MileagePlus列は引き落とし月の金額を入れる前提。
-// 月単位入力なので、4月〜12月 + 1月〜3月を集計します。
+// 月単位入力なので、3月〜12月 + 1月〜2月を集計します。
 function mileagePlusPeriodTotal(){
-  const periodMonthIndexes = [3,4,5,6,7,8,9,10,11,0,1,2]; // 4月〜12月 + 1月〜3月
+  const periodMonthIndexes = [2,3,4,5,6,7,8,9,10,11,0,1]; // 3月〜12月 + 1月〜2月
   return periodMonthIndexes.reduce((sum, idx)=> sum + Number(state.entries[idx]?.mp || 0), 0);
 }
 
@@ -631,8 +625,18 @@ function renderSummaries(){
       `<span class="tag good">${num(c.mpMiles)}マイル</span>
        <span class="tag">実質 ${yen(c.mpYen)} 相当</span>
        ${mpOver>0?`<span class="tag warn">上限超過 ${yen(mpOver)}</span>`:`<span class="tag">1.5%枠 残り ${yen(Math.max(0,s.mpCapYen-c.mpPeriodSpend))}</span>`}
-       <span class="tag warn">対象: 4月〜翌3月引落分</span>`,
-      `4月〜翌3月の引き落とし分で集計`
+       <span class="tag warn">対象: 3月〜翌2月引落分</span>`,
+      `3月〜翌2月の引き落とし分で集計`
+    ),
+    cardSummaryHtml(
+      "三井住友カード ゴールドNL",
+      c.smbcPeriodSpend,
+      s.smbcTarget,
+      `<span class="tag ${c.smbcPeriodSpend>=s.smbcTarget?'good':'warn'}">${c.smbcPeriodSpend>=s.smbcTarget?'ボーナス達成':'残り '+yen(Math.max(0,s.smbcTarget-c.smbcPeriodSpend))}</span>
+       <span class="tag">${num(Math.round(c.smbcTotalPt))}pt見込み</span>
+       <span class="tag">実質 ${pct(c.smbcPeriodSpend? (c.smbcTotalPt/c.smbcPeriodSpend*100):0)}</span>
+       <span class="tag warn">対象: 6月〜翌5月入力分</span>`,
+      `6/1〜翌5/31利用分を想定。月単位入力のため、6月〜翌5月分で近似集計`
     ),
     cardSummaryHtml(
       "エポスゴールド",
@@ -652,16 +656,6 @@ function renderSummaries(){
        <span class="tag">1日・第3金曜 ${pct(s.maruetsuFiveX)}</span>
        <span class="tag">通常 ${pct(s.maruetsuBase)}</span>`,
       `店舗特典用。年間ボーナス達成より、使う日で強さが変わるカード`
-    ),
-    cardSummaryHtml(
-      "三井住友カード ゴールドNL",
-      c.smbcPeriodSpend,
-      s.smbcTarget,
-      `<span class="tag ${c.smbcPeriodSpend>=s.smbcTarget?'good':'warn'}">${c.smbcPeriodSpend>=s.smbcTarget?'ボーナス達成':'残り '+yen(Math.max(0,s.smbcTarget-c.smbcPeriodSpend))}</span>
-       <span class="tag">${num(Math.round(c.smbcTotalPt))}pt見込み</span>
-       <span class="tag">実質 ${pct(c.smbcPeriodSpend? (c.smbcTotalPt/c.smbcPeriodSpend*100):0)}</span>
-       <span class="tag warn">対象: 6月〜翌5月入力分</span>`,
-      `6/1〜翌5/31利用分を想定。月単位入力のため、6月〜翌5月分で近似集計`
     )
   ].join("");
   document.getElementById("cardSummaries").innerHTML = html;
